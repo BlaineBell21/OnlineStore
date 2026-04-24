@@ -81,7 +81,7 @@ online-store/
 1. Clone this repository:
 
 ```bash
-git clone https://github.com/yourusername/online-store.git
+git clone https://github.com/BlaineBell21/OnlineStore
 ```
 
 2. Open the project in IntelliJ IDEA
