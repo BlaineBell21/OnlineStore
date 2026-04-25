@@ -14,7 +14,7 @@ public class Main {
         CartService shoppingCart = new CartService();
 
         inventory.loadProductsFromCSV();
-        MainUserInterface.displayMessage();
+        MainUserInterface.displayWelcomeMessage();
         MainUserInterface.homeScreenUI(inventory, shoppingCart);
     }
 }

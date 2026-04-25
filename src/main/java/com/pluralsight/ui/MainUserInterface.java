@@ -3,10 +3,11 @@ package com.pluralsight.ui;
 import service.CartService;
 import service.ProductInventory;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
-import static com.pluralsight.ui.DepartmentSubMenuUI.departmentScreenUI;
-import static com.pluralsight.ui.DepartmentSubMenuUI.displayDepartmentScreen;
+//import static com.pluralsight.ui.DepartmentSubMenuUI.departmentScreenUI;
+//import static com.pluralsight.ui.DepartmentSubMenuUI.displayDepartmentScreen;
 
 public class MainUserInterface {
     public static void displayHomeScreen(){
@@ -33,6 +34,7 @@ public class MainUserInterface {
                     break;
                 case 3: //allows them to exit
                     System.out.println();
+                    displayGoodbyeMessage();
                     isDoneShopping = true;
                     break;
                 default: //
@@ -55,21 +57,17 @@ public class MainUserInterface {
             int userOption = promptInt();
             switch (userOption){
                 case 1: //takes them to product name search
-                    System.out.println();
                     isDoneShopping = true;
                     break;
                 case 2: //takes them to product price search
-                    System.out.println();
                     isDoneShopping = true;
                     break;
-                case 3: //takes them to product department search
-                    System.out.println();
-                    displayDepartmentScreen();
-                    departmentScreenUI();
-                    isDoneShopping = true;
-                    break;
+//                case 3: //takes them to product department search
+//                    displayDepartmentScreen();
+//                    departmentScreenUI();
+//                    isDoneShopping = true;
+//                    break;
                 case 4: //allows them to return to home screen
-                    System.out.println();
                     isDoneShopping = true;
                     homeScreenUI(inventory, shoppingCart);
                     break;
@@ -83,8 +81,10 @@ public class MainUserInterface {
         System.out.println("Would you like to: ");
         System.out.println("1. Add products to your cart");
         System.out.println("2. Remove products from your cart");
-        System.out.println("3. See what's in your cart");
-        System.out.println("4. Return to home screen");
+        System.out.println("3. Clear you cart");
+        System.out.println("4. See what's in your cart");
+        System.out.println("5. Checkout your items");
+        System.out.println("6. Return to home screen");
     }
 
     public static void cartScreenUI(ProductInventory inventory, CartService shoppingCart){//allows user to enter in cart screen choices
@@ -94,22 +94,24 @@ public class MainUserInterface {
             int userOption = promptInt();
             switch (userOption){
                 case 1: //allows them to enter new items into cart
-                    System.out.println();
-                    CartService.addToCart(inventory, shoppingCart);
+                    CartService.addToCart();
                     isDoneShopping = true;
                     break;
-                case 2: //allows them to remove items from cart
-                    System.out.println();
-                    CartService.removeFromCart(shoppingCart);
+                case 2: //allows user to remove items from cart
+                    CartService.removeFromCart();
                     isDoneShopping = true;
                     break;
-                case 3: //allows them to see what items are in their cart
-                    System.out.println();
-                    CartService.displayShoppingCart(inventory, shoppingCart);
+                case 3:
+                    CartService.clearCart();
+                    break;
+                case 4: //allows them to see what items are in their cart
+                    CartService.displayShoppingCart();
                     isDoneShopping = true;
                     break;
-                case 4: //allows them to return to home screen
-                    System.out.println();
+                case 5: //allows user to calculate cart total and checkout
+                    CartService.calculateTotal();
+                    break;
+                case 6: //allows them to return to home screen
                     isDoneShopping = true;
                     homeScreenUI(inventory, shoppingCart);
                     break;
@@ -126,7 +128,11 @@ public class MainUserInterface {
         Scanner userIntInput = new Scanner(System.in);
         return userIntInput.nextInt();
     }
-    public static void displayMessage(){
+    public static void displayWelcomeMessage(){
         System.out.println("Welcome to the One Stop Shop");
     }
+    public static void displayGoodbyeMessage(){
+        System.out.println("Thank you for choosing to shop at One Stop Shop, have a wonderful day.");
+    }
+
 }
